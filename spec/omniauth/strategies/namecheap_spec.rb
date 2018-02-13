@@ -33,4 +33,19 @@ RSpec.describe OmniAuth::Strategies::Namecheap do
     its(:options) { is_expected.to include token_url:     '/apps/sso/api/token'         }
     its(:options) { is_expected.to include me_url:        '/apps/sso/api/resource/user' }
   end
+
+  describe '#build_access_token' do
+    let(:token) { double(:token) }
+
+    before do
+      allow(subject.request).to receive(:params) { { 'code' => 'lalala' } }
+      allow(subject).to receive(:query_string) { '?this=query' }
+      allow(subject).to receive(:callback_url) { 'https://reddit.com/r/hmmm?this=query' }
+    end
+
+    it 'gets token with the code and redirect uri' do
+      expect(subject).to receive_message_chain(:client, :auth_code, :get_token).with('lalala', { redirect_uri: 'https://reddit.com/r/hmmm' }, {}) { token }
+      expect(subject.build_access_token).to eq token
+    end
+  end
 end
