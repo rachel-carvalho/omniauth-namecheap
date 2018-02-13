@@ -5,7 +5,7 @@ module OmniAuth
     class Namecheap < OmniAuth::Strategies::OAuth2
       # This is where you pass the options you would pass when
       # initializing your consumer from the OAuth gem.
-      option :client_options, site:          'https://www.sandbox.namecheap.com',
+      option :client_options, site:          'https://www.namecheap.com',
                               authorize_url: '/apps/sso/api/authorize',
                               token_url:     '/apps/sso/api/token',
                               me_url:        '/apps/sso/api/resource/user'

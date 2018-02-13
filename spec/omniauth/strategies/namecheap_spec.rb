@@ -29,7 +29,7 @@ RSpec.describe OmniAuth::Strategies::Namecheap do
   describe '#client' do
     subject { described_class.new(nil).client }
 
-    its(:site) { is_expected.to eq 'https://www.sandbox.namecheap.com' }
+    its(:site) { is_expected.to eq 'https://www.namecheap.com' }
 
     its(:options) { is_expected.to include authorize_url: '/apps/sso/api/authorize'     }
     its(:options) { is_expected.to include token_url:     '/apps/sso/api/token'         }
