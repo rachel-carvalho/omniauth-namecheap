@@ -1,7 +1,7 @@
 require 'omniauth/namecheap/version'
+require 'omniauth/strategies/namecheap'
 
-module Omniauth
+module OmniAuth
   module Namecheap
-    # Your code goes here...
   end
 end

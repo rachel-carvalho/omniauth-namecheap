@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'omniauth/namecheap'
+require 'rspec/its'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
