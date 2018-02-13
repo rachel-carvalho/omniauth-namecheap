@@ -11,6 +11,8 @@ RSpec.describe OmniAuth::Strategies::Namecheap do
 
   it { is_expected.to be_an OmniAuth::Strategies::OAuth2 }
 
+  its(:name) { is_expected.to eq 'namecheap' }
+
   its(:raw_info) { is_expected.to eq JSON.parse(response.body) }
 
   its(:uid) { is_expected.to eq '666' }
