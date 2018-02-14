@@ -20,7 +20,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use it with [Devise](https://github.com/plataformatec/devise), provide the client id, secret and scope within Devise's config.
+
+```ruby
+config.omniauth :namecheap, ENV['NAMECHEAP_CLIENT_ID'], ENV['NAMECHEAP_SECRET'], scope: 'openid profile offline_access'
+```
+
+To use Namecheap's sandbox url, just override `client_options` / `site`:
+
+```ruby
+config.omniauth :namecheap, ENV['NAMECHEAP_CLIENT_ID'], ENV['NAMECHEAP_SECRET'], scope: 'openid profile offline_access', client_options: { site: 'https://www.sandbox.namecheap.com' }
+```
 
 ## Development
 
