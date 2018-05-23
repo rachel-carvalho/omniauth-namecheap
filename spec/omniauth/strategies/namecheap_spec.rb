@@ -39,19 +39,40 @@ RSpec.describe OmniAuth::Strategies::Namecheap do
     its(:options) { is_expected.to include me_url:        '/apps/sso/api/resource/user' }
   end
 
+  describe '#request_phase' do
+    let(:callback_url) { 'https://lalala.com/auth/namecheap/callback?qs=huhu' }
+
+    subject { instance.request_phase }
+
+    before do
+      allow(instance).to receive(:callback_url) { callback_url }
+    end
+
+    it 'saves callback url' do
+      expect { subject }.to change { env['rack.session'][:namecheap_omnniauth_callback_url] }.to callback_url
+    end
+
+    it 'redirects' do
+      expect(instance).to receive(:redirect).with %r{https://www.namecheap.com/apps/sso/api/authorize}
+      subject
+    end
+  end
+
   describe '#build_access_token' do
     let(:token) { double(:token) }
+    let(:saved_callback_url) { 'https://reddit.com/r/hmmm?other=thing' }
 
     subject { instance.build_access_token }
 
     before do
       allow(instance.request).to receive(:params) { { 'code' => 'lalala' } }
-      allow(instance).to receive(:query_string) { '?this=query' }
-      allow(instance).to receive(:callback_url) { 'https://reddit.com/r/hmmm?this=query' }
+      allow(instance).to receive(:callback_url) { 'https://reddit.com/r/hmmm?this=query&other=thing' }
+      env['rack.session'][:namecheap_omnniauth_callback_url] = saved_callback_url
+      allow(instance).to receive_message_chain(:client, :auth_code, :get_token) { token }
     end
 
     it 'gets token with the code and redirect uri' do
-      expect(instance).to receive_message_chain(:client, :auth_code, :get_token).with('lalala', { redirect_uri: 'https://reddit.com/r/hmmm' }, {}) { token }
+      expect(instance).to receive_message_chain(:client, :auth_code, :get_token).with('lalala', { redirect_uri: saved_callback_url }, {})
       expect(subject).to eq token
     end
   end
