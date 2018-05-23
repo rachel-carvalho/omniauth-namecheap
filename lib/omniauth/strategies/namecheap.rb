@@ -19,16 +19,25 @@ module OmniAuth
 
       info { deep_symbolize(raw_info) }
 
+      def request_phase
+        session[:namecheap_omnniauth_callback_url] = callback_url
+        super
+      end
+
       def raw_info
         @raw_info ||= JSON.parse(access_token.get(client.options[:me_url]).body)
       end
 
       def build_access_token
-        code              = request.params['code']
-        redirect_uri      = callback_url.gsub(query_string, '')
-        params            = { redirect_uri: redirect_uri }.merge(token_params.to_hash(symbolize_keys: true))
+        params            = { redirect_uri: saved_callback_url }.merge(token_params.to_hash(symbolize_keys: true))
         auth_token_params = deep_symbolize(options.auth_token_params)
-        client.auth_code.get_token(code, params, auth_token_params)
+        client.auth_code.get_token(request.params['code'], params, auth_token_params)
+      end
+
+      private
+
+      def saved_callback_url
+        session[:namecheap_omnniauth_callback_url]
       end
     end
   end
