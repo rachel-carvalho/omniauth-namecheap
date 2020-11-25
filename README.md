@@ -1,5 +1,7 @@
 # Omniauth::Namecheap
 
+[![Build Status](https://travis-ci.com/rachel-carvalho/omniauth-namecheap.svg?branch=master)](https://travis-ci.com/rachel-carvalho/omniauth-namecheap)
+
 This is an Omniauth strategy for Namecheap.
 
 ## Installation
