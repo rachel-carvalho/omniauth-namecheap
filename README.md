@@ -1,5 +1,7 @@
 # Omniauth::Namecheap
 
+[![Build Status](https://travis-ci.com/rachel-carvalho/omniauth-namecheap.svg?branch=master)](https://travis-ci.com/rachel-carvalho/omniauth-namecheap)
+
 This is an Omniauth strategy for Namecheap.
 
 ## Installation
@@ -40,7 +42,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/omniauth-namecheap. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/rachel-carvalho/omniauth-namecheap. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -48,4 +50,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Omniauth::Namecheap project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/omniauth-namecheap/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Omniauth::Namecheap project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/rachel-carvalho/omniauth-namecheap/blob/master/CODE_OF_CONDUCT.md).
